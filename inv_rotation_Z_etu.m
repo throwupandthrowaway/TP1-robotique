@@ -4,6 +4,5 @@ function [a] = inv_rotation_Z_etu(R)
 % qu'elle représente bien une rotation d'axe Z).
 %   [a] = inv_rotation_Z(R)
 
-a = 0.0;
-
+a = atan2(R(2,1),R(1,1));
 end
