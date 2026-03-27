@@ -1,19 +1,24 @@
 clear all
 close all
 
+
+
 %% 2.2/ Construction et affichage d’un 3R plan
 % =========================================================================
 
 % Question 2.2.1 : déclaration du modèle r3
-% -------------------------------------------------------------------------
+modele=robot('model', [0.5,0.3,0.2])
 % CODE A COMPLETER
 
 % Question 2.2.2 : affichage du modèle
-% -------------------------------------------------------------------------
+modele.plot(1,'blue',1)
 % CODE A COMPLETER
 
 % Question 2.2.3 : robot r3 en [pi/2,0,0] + vérification graphique
-% -------------------------------------------------------------------------
+position=[pi/2,0,0]
+modele.setAngularPosition(position)
+modele.plot(1,'red',1)
+
 % CODE A COMPLETER
 
 
@@ -21,8 +26,10 @@ close all
 %----------------------------------------------------------------------
 
 % Question 2.3.1 : matrice de rotation d’un angle alpha autour de l’axe Z
-% -------------------------------------------------------------------------
-% CODE A COMPLETER
+
+T=modele.mod_geo_dir()
+
+
 
 % Question 2.3.2 : retourne alpha à partir d’une matrice de rotation
 % -------------------------------------------------------------------------
