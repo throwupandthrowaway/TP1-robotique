@@ -1,0 +1,90 @@
+clear all
+close all
+
+
+
+%% 2.2/ Construction et affichage d’un 3R plan
+% =========================================================================
+
+% Question 2.2.1 : déclaration du modèle r3
+modele=robot('model', [0.5,0.3,0.2])
+% CODE A COMPLETER
+
+% Question 2.2.2 : affichage du modèle
+modele.plot(0,'blue',0)
+% CODE A COMPLETER
+
+% Question 2.2.3 : robot r3 en [pi/2,0,0] + vérification graphique
+position=[pi/2,0,0]
+modele.setAngularPosition(position)
+modele.plot(0,'red',0)
+
+% CODE A COMPLETER
+
+
+%% 2.3/ Fonctionnalités élémentaires
+%----------------------------------------------------------------------
+
+% Question 2.3.1 : matrice de rotation d’un angle alpha autour de l’axe Z
+
+T=modele.mod_geo_dir()
+angle=pi/2
+R=rotation_Z_etu(angle)
+
+% Question 2.3.2 : retourne alpha à partir d’une matrice de rotation
+a=inv_rotation_Z_etu(R)
+
+% Question 2.3.3 : matrice de transformation homogène
+T=[1;2;3];
+H = trans_homogene_etu(R,T)
+
+%% 2.4/ Calcul du modèle géométrique direct et inverse
+%----------------------------------------------------------------------
+
+% Question 2.4.1 : fonction matlab qui retourne les matrices de transformation homogène
+THf = mod_geo_dir(modele)
+% Question 2.4.2 : Tester la fonction mod_geo_dir_etu() 
+
+%for test = 1:5
+
+position=[pi,0,0] %+ randn(3,1)
+modele.setAngularPosition(position)
+modele.plot(0,'red',0)
+%clc
+THf = mod_geo_dir(modele)
+
+ang_ee = inv_rotation_Z_etu(THf(1:3,1:3))/pi*180
+ %waitforbuttonpress
+
+%end
+
+% Question 2.4.3 : Utilisation du modèle inverse
+
+cible=[2,1,pi]
+[q1,q2]= modele.mod_geo_inv(cible(1),cible(2),cible(3))
+
+
+% Question 2.4.4 : cible [1.0 1.0 3*pi/2]
+
+cible=[1.0,1.0,3*pi/2]
+[q1,q2]=modele.mod_geo_inv(cible(1),cible(2),cible(3))
+
+
+%% 3) Génération de trajectoires par interpolation
+% =========================================================================
+
+% Question 3.1.1 : interpolation articulaire
+% -------------------------------------------------------------------------
+% CODE A COMPLETER
+
+% Question 3.1.2 : avantages/inconvénients
+% -------------------------------------------------------------------------
+
+% Question 3.2.1 : interpolation opérationnelle
+% -------------------------------------------------------------------------
+% CODE A COMPLETER
+
+% Question 3.2.2 : avantages/inconvénients
+% -------------------------------------------------------------------------
+
+
