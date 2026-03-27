@@ -45,18 +45,18 @@ H = trans_homogene_etu(R,T)
 THf = mod_geo_dir(modele)
 % Question 2.4.2 : Tester la fonction mod_geo_dir_etu() 
 
-%for test = 1:5
+for test = 1:5
 
-position=[pi,0,0] %+ randn(3,1)
+position=[pi,0,0] + randn(3,1)
 modele.setAngularPosition(position)
 modele.plot(0,'red',0)
-%clc
+clc
 THf = mod_geo_dir(modele)
 
 ang_ee = inv_rotation_Z_etu(THf(1:3,1:3))/pi*180
- %waitforbuttonpress
+ waitforbuttonpress
 
-%end
+end
 
 % Question 2.4.3 : Utilisation du modèle inverse
 
@@ -74,7 +74,10 @@ cible=[1.0,1.0,3*pi/2]
 % =========================================================================
 
 % Question 3.1.1 : interpolation articulaire
+
 position=[pi,0,0]
+
+
 modele.setAngularPosition(position)
 modele.plot(0,'red',0)
 cible=[-0.5,-0.2,-3*pi/4]
@@ -94,7 +97,19 @@ ang_ee = inv_rotation_Z_etu(THf(1:3,1:3))/pi*180
 drawnow
 clc
 end
+ 
+for k=1:n
 
+position2=[q2(1)/k,q2(2)/k,q2(3)/k]
+modele.setAngularPosition(position2)
+modele.plot(0,'blue',1)
+
+THf = mod_geo_dir(modele)
+
+ang_ee = inv_rotation_Z_etu(THf(1:3,1:3))/pi*180
+drawnow
+clc
+end
 % Question 3.1.2 : avantages/inconvénients
 % -------------------------------------------------------------------------
 
@@ -105,4 +120,42 @@ end
 % Question 3.2.2 : avantages/inconvénients
 % -------------------------------------------------------------------------
 
+for test = 1:5
 
+position=[pi,0,0] + randn(3,1)
+
+
+    modele.setAngularPosition(position)
+modele.plot(0,'red',0)
+cible=[-0.5,-0.2,-3*pi/4]
+[q1,q2]=modele.mod_geo_inv(cible(1),cible(2),cible(3))
+
+n=100
+
+for k=1:n
+
+position=[q1(1)/k,q1(2)/k,q1(3)/k]
+modele.setAngularPosition(position)
+modele.plot(0,'red',1)
+
+THf = mod_geo_dir(modele)
+
+ang_ee = inv_rotation_Z_etu(THf(1:3,1:3))/pi*180
+drawnow
+clc
+end
+ 
+for k=1:n
+
+position2=[q2(1)/k,q2(2)/k,q2(3)/k]
+modele.setAngularPosition(position2)
+modele.plot(0,'blue',1)
+
+THf = mod_geo_dir(modele)
+
+ang_ee = inv_rotation_Z_etu(THf(1:3,1:3))/pi*180
+drawnow
+clc
+end
+waitforbuttonpress
+end
